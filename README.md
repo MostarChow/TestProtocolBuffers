@@ -5,5 +5,6 @@
 * 第三方库：AFNetworking（网络请求）、Protobuf（Protocol Buffers二进制数据解析）
 
 ## 服务端
-* 使用Beego框架
 * 使用**bee run**启动服务
+* 框架:Beego
+
