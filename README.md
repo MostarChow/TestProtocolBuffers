@@ -5,3 +5,4 @@
 * 第三方库：AFNetworking（网络请求）、Protobuf（Protocol Buffers二进制数据解析）
 
 ## 服务端
+* 使用Beego框架
