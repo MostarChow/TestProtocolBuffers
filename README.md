@@ -1,4 +1,4 @@
-# 尝试使用Golang服务端+ObjC客户端通过Protocol Buffers进行传输
+尝试使用Golang服务端+ObjC客户端通过Protocol Buffers进行传输
 
 ## 客户端
 * 使用**pod install**下载第三方库
