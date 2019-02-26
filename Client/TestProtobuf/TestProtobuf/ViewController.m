@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import <AFNetworking/AFNetworking.h>
 #import "User.h"
 
 @interface ViewController ()
@@ -26,23 +25,34 @@
 }
 
 - (void)send {
-    AFHTTPSessionManager * manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-     [manager.requestSerializer setValue:@"application/octet-stream" forHTTPHeaderField:@"Content-Type"];
+     NSURL * url = [NSURL URLWithString:@"http://192.168.10.170:8080/login?name=ios"];
+    NSURLRequest * request = [NSURLRequest requestWithURL:url];
+    NSURLSession * session = [NSURLSession sharedSession];
+    NSURLSessionDataTask * dataTask = [session dataTaskWithRequest:request
+                                                completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+                                                    
+        if (!error) {
+             // 请求成功
+            NSString * dataString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            NSData * base64 = [[NSData alloc] initWithBase64EncodedString:dataString options:NSDataBase64DecodingIgnoreUnknownCharacters];
+          
+            NSError * parseError;
+            User * user = [User parseFromData:base64 error:&parseError];
+            if (!parseError) {
+                NSLog(@"\n用户id：%ld \n用户名称：%@ \n用户密码：%@ \n联系号码：%ld \n地址：%@",
+                      (long)user.userId, user.userName, user.password, (long)user.telephone, user.address);
+            }
+            
+            // 模拟拦截破解
+            NSString * base64String = [[NSString alloc] initWithData:base64 encoding:NSASCIIStringEncoding];
+            NSLog(@"非主流方式解密：%@", base64String);
     
-    NSDictionary * params = @{@"name" : @"ios"};
-    [manager GET:@"http://127.0.0.1:8080/login" parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSString * dataString = responseObject[@"Output"];
-        NSData * data = [[NSData alloc]initWithBase64EncodedString:dataString options:NSDataBase64DecodingIgnoreUnknownCharacters];
-        User * user = [User parseFromData:data error:nil];
-        NSLog(@"%ld + %@", user.userId, user.userName);
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@", error.localizedDescription);
+        } else {
+            // 请求失败
+            NSLog(@"%@", error.localizedDescription);
+        }
     }];
+    [dataTask resume];
 }
 
 @end

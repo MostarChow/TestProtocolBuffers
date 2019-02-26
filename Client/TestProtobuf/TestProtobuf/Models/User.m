@@ -48,11 +48,17 @@ static GPBFileDescriptor *UserRoot_FileDescriptor(void) {
 
 @dynamic hasUserId, userId;
 @dynamic hasUserName, userName;
+@dynamic hasPassword, password;
+@dynamic hasTelephone, telephone;
+@dynamic hasAddress, address;
 
 typedef struct User__storage_ {
   uint32_t _has_storage_[1];
-  int32_t userId;
   NSString *userName;
+  NSString *password;
+  NSString *address;
+  int64_t userId;
+  int64_t telephone;
 } User__storage_;
 
 // This method is threadsafe because it is initially called
@@ -68,7 +74,7 @@ typedef struct User__storage_ {
         .hasIndex = 0,
         .offset = (uint32_t)offsetof(User__storage_, userId),
         .flags = (GPBFieldFlags)(GPBFieldRequired | GPBFieldTextFormatNameCustom),
-        .dataType = GPBDataTypeInt32,
+        .dataType = GPBDataTypeInt64,
       },
       {
         .name = "userName",
@@ -76,7 +82,34 @@ typedef struct User__storage_ {
         .number = User_FieldNumber_UserName,
         .hasIndex = 1,
         .offset = (uint32_t)offsetof(User__storage_, userName),
-        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
+        .flags = (GPBFieldFlags)(GPBFieldRequired | GPBFieldTextFormatNameCustom),
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "password",
+        .dataTypeSpecific.className = NULL,
+        .number = User_FieldNumber_Password,
+        .hasIndex = 2,
+        .offset = (uint32_t)offsetof(User__storage_, password),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "telephone",
+        .dataTypeSpecific.className = NULL,
+        .number = User_FieldNumber_Telephone,
+        .hasIndex = 3,
+        .offset = (uint32_t)offsetof(User__storage_, telephone),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeInt64,
+      },
+      {
+        .name = "address",
+        .dataTypeSpecific.className = NULL,
+        .number = User_FieldNumber_Address,
+        .hasIndex = 4,
+        .offset = (uint32_t)offsetof(User__storage_, address),
+        .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
       },
     };

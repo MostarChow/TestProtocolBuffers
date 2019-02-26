@@ -49,16 +49,30 @@ NS_ASSUME_NONNULL_BEGIN
 typedef GPB_ENUM(User_FieldNumber) {
   User_FieldNumber_UserId = 1,
   User_FieldNumber_UserName = 2,
+  User_FieldNumber_Password = 3,
+  User_FieldNumber_Telephone = 4,
+  User_FieldNumber_Address = 5,
 };
 
 @interface User : GPBMessage
 
-@property(nonatomic, readwrite) NSInteger userId;
+@property(nonatomic, readwrite) int64_t userId;
 
 @property(nonatomic, readwrite) BOOL hasUserId;
 @property(nonatomic, readwrite, copy, null_resettable) NSString *userName;
 /** Test to see if @c userName has been set. */
 @property(nonatomic, readwrite) BOOL hasUserName;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *password;
+/** Test to see if @c password has been set. */
+@property(nonatomic, readwrite) BOOL hasPassword;
+
+@property(nonatomic, readwrite) int64_t telephone;
+
+@property(nonatomic, readwrite) BOOL hasTelephone;
+@property(nonatomic, readwrite, copy, null_resettable) NSString *address;
+/** Test to see if @c address has been set. */
+@property(nonatomic, readwrite) BOOL hasAddress;
 
 @end
 

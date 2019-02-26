@@ -3,6 +3,9 @@ syntax = "proto2";
 package user;
 
 message User {
-	required int32 userId = 1;
-	optional string userName = 2;
+	required int64 userId = 1;
+	required string userName = 2;
+	optional string password = 3;
+	optional int64 telephone = 4;
+	optional string address = 5;
 }

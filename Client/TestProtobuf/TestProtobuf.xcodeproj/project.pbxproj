@@ -8,17 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		059D3923A245EAD139A5F138 /* libPods-TestProtobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6D1444C261B09E574C9146A /* libPods-TestProtobuf.a */; };
+		2E1827472224EB6D0036FF5F /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E1827462224EB6D0036FF5F /* User.m */; };
 		2E3BE7182223925C00101764 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E3BE7172223925C00101764 /* AppDelegate.m */; };
 		2E3BE71B2223925C00101764 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E3BE71A2223925C00101764 /* ViewController.m */; };
 		2E3BE71E2223925C00101764 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E3BE71C2223925C00101764 /* Main.storyboard */; };
 		2E3BE7202223925D00101764 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2E3BE71F2223925D00101764 /* Assets.xcassets */; };
 		2E3BE7232223925D00101764 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E3BE7212223925D00101764 /* LaunchScreen.storyboard */; };
 		2E3BE7262223925D00101764 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E3BE7252223925D00101764 /* main.m */; };
-		2E4D7FD022239C0F00787423 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 2E4D7FCE22239C0F00787423 /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		00A06BC43EF04FE11CCB8333 /* Pods-TestProtobuf.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestProtobuf.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TestProtobuf/Pods-TestProtobuf.debug.xcconfig"; sourceTree = "<group>"; };
+		2E1827452224EB6D0036FF5F /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		2E1827462224EB6D0036FF5F /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		2E3BE7132223925C00101764 /* TestProtobuf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestProtobuf.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E3BE7162223925C00101764 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2E3BE7172223925C00101764 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -29,8 +31,6 @@
 		2E3BE7222223925D00101764 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2E3BE7242223925D00101764 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2E3BE7252223925D00101764 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2E4D7FCE22239C0F00787423 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		2E4D7FCF22239C0F00787423 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		7DB93FAD00DA7694C0C089C1 /* Pods-TestProtobuf.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TestProtobuf.release.xcconfig"; path = "Pods/Target Support Files/Pods-TestProtobuf/Pods-TestProtobuf.release.xcconfig"; sourceTree = "<group>"; };
 		E6D1444C261B09E574C9146A /* libPods-TestProtobuf.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TestProtobuf.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -85,8 +85,8 @@
 		2E3BE72C2223926F00101764 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2E4D7FCF22239C0F00787423 /* User.h */,
-				2E4D7FCE22239C0F00787423 /* User.m */,
+				2E1827452224EB6D0036FF5F /* User.h */,
+				2E1827462224EB6D0036FF5F /* User.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -204,8 +204,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E1827472224EB6D0036FF5F /* User.m in Sources */,
 				2E3BE71B2223925C00101764 /* ViewController.m in Sources */,
-				2E4D7FD022239C0F00787423 /* User.m in Sources */,
 				2E3BE7262223925D00101764 /* main.m in Sources */,
 				2E3BE7182223925C00101764 /* AppDelegate.m in Sources */,
 			);
