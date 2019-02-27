@@ -16,6 +16,7 @@ message Output {
 	int64 telephone = 4;
 	string address = 5;
 	FamilyGroup family = 6;
+	repeated string array = 7;
 }
 
 

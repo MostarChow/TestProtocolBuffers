@@ -106,6 +106,7 @@ typedef struct Input__storage_ {
 @dynamic telephone;
 @dynamic address;
 @dynamic hasFamily, family;
+@dynamic arrayArray, arrayArray_Count;
 
 typedef struct Output__storage_ {
   uint32_t _has_storage_[1];
@@ -113,6 +114,7 @@ typedef struct Output__storage_ {
   NSString *password;
   NSString *address;
   FamilyGroup *family;
+  NSMutableArray *arrayArray;
   int64_t userId;
   int64_t telephone;
 } Output__storage_;
@@ -176,6 +178,15 @@ typedef struct Output__storage_ {
         .offset = (uint32_t)offsetof(Output__storage_, family),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeMessage,
+      },
+      {
+        .name = "arrayArray",
+        .dataTypeSpecific.className = NULL,
+        .number = Output_FieldNumber_ArrayArray,
+        .hasIndex = GPBNoHasBit,
+        .offset = (uint32_t)offsetof(Output__storage_, arrayArray),
+        .flags = GPBFieldRepeated,
+        .dataType = GPBDataTypeString,
       },
     };
     GPBDescriptor *localDescriptor =

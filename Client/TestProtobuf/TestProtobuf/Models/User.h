@@ -73,6 +73,7 @@ typedef GPB_ENUM(Output_FieldNumber) {
   Output_FieldNumber_Telephone = 4,
   Output_FieldNumber_Address = 5,
   Output_FieldNumber_Family = 6,
+  Output_FieldNumber_ArrayArray = 7,
 };
 
 /**
@@ -93,6 +94,10 @@ typedef GPB_ENUM(Output_FieldNumber) {
 @property(nonatomic, readwrite, strong, null_resettable) FamilyGroup *family;
 /** Test to see if @c family has been set. */
 @property(nonatomic, readwrite) BOOL hasFamily;
+
+@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray<NSString*> *arrayArray;
+/** The number of items in @c arrayArray without causing the array to be created. */
+@property(nonatomic, readonly) NSUInteger arrayArray_Count;
 
 @end
 

@@ -94,8 +94,8 @@
     NSError * parseError;
     Output * user = [Output parseFromData:base64 error:&parseError];
     if (!parseError) {
-        NSLog(@"\n用户id：%ld \n用户名称：%@ \n用户密码：%@ \n联系号码：%ld \n地址：%@ \n老爸：%@ \n老母：%@",
-              (long)user.userId, user.userName, user.password, (long)user.telephone, user.address, user.family.father, user.family.mother);
+        NSLog(@"\n用户id：%ld \n用户名称：%@ \n用户密码：%@ \n联系号码：%ld \n地址：%@ \n老爸：%@ \n老母：%@, \n数组:%@",
+              (long)user.userId, user.userName, user.password, (long)user.telephone, user.address, user.family.father, user.family.mother, user.arrayArray);
     } else {
         NSLog(@"%@", parseError.localizedDescription);
     }

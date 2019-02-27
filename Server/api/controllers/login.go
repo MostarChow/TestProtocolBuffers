@@ -60,6 +60,9 @@ func getData(name string) ([]byte) {
 		Father:"哈哈哈",
 		Mother:"呵呵呵",
 	}
+
+	array := []string{"我", "也", "不", "知", "道", "放", "什", "么", "好"}
+
 	userModel := &user.Output{
 		UserId:1,
 		UserName:name,
@@ -67,6 +70,7 @@ func getData(name string) ([]byte) {
 		Telephone:13800138000,
 		Address:"广州市海珠区",
 		Family:family,
+		Array:array,
 	}
 	data, _ := proto.Marshal(userModel)
 	return data
