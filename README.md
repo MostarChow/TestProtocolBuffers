@@ -2,7 +2,7 @@
 
 ## 客户端
 * 使用**pod install**下载第三方库
-* 第三方库：AFNetworking（网络请求）、Protobuf（Protocol Buffers二进制数据解析）
+* 第三方库：Protobuf（Protocol Buffers二进制数据解析）
 
 ## 服务端
 * 使用**bee run**启动服务
