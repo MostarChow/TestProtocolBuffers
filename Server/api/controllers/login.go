@@ -3,9 +3,9 @@ package controllers
 import (
 	"github.com/astaxie/beego"
 	"github.com/golang/protobuf/proto"
+	"mostar.com/api/models"
 	"fmt"
 	"encoding/base64"
-	"mostar.com/api/models"
 )
 
 type LoginController struct {
@@ -16,43 +16,33 @@ func (c *LoginController) Get() {
 	name := c.GetString("name")
 	// 编码
 	data := getData(name)
-	fmt.Println(data)
-
 	// 解码
 	newUserModel := &user.Output{}
 	proto.Unmarshal(data, newUserModel)
-	fmt.Println(newUserModel.String())
-
+	// 转为base64
 	base64String := base64.StdEncoding.EncodeToString(data)
-	fmt.Println(base64String)
-	
 	// 输出
 	c.Ctx.WriteString(base64String)
-	//c.Ctx.Output.Body(data)
 }
 
 func (c *LoginController) Post()  {
 	// 接收参数
 	data := c.Ctx.Input.RequestBody
-	// 将接收的base64转为二进制
-	data, error := base64.StdEncoding.DecodeString(string(data))
-
+	// 解码
+	userModel := &user.Input{}
+	error := proto.Unmarshal(data, userModel)
 	if error == nil {
-		// 解码
-		userModel := &user.Input{}
-		proto.Unmarshal(data, userModel)
-
 		// 获取数据
 		name := userModel.GetAccount()
 		outData := getData(name)
-
-		base64String := base64.StdEncoding.EncodeToString(outData)
-
+		fmt.Println(userModel.String())
 		// 输出
-		c.Ctx.WriteString(base64String)
+		c.Ctx.Output.Body(outData)
 	} else {
-		fmt.Println(error.Error())
+		msg := error.Error()
+		c.Ctx.Output.Body([]byte(msg))
 	}
+
 }
 
 func getData(name string) ([]byte) {

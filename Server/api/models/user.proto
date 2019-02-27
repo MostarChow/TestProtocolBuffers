@@ -4,23 +4,23 @@ package user;
 
 // 接收参数
 message Input {
-	string account = 1;
-	string password = 2;
+    string account = 1;
+    string password = 2;
 }
 
 // 返回数据
 message Output {
-	int64 userId = 1;
-	string userName = 2;
-	string password = 3;
-	int64 telephone = 4;
-	string address = 5;
-	FamilyGroup family = 6;
-	repeated string array = 7;
+    int64 userId = 1;
+    string userName = 2;
+    string password = 3;
+    int64 telephone = 4;
+    string address = 5;
+    FamilyGroup family = 6;
+    repeated string array = 7;
 }
 
 
 message FamilyGroup {
-	string father = 1;
-	string mother = 2;
+    string father = 1;
+    string mother = 2;
 }
