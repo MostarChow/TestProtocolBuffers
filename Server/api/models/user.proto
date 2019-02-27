@@ -1,11 +1,25 @@
-syntax = "proto2";
+syntax = "proto3";
 
 package user;
 
-message User {
-	required int64 userId = 1;
-	required string userName = 2;
-	optional string password = 3;
-	optional int64 telephone = 4;
-	optional string address = 5;
+// 接收参数
+message Input {
+	string account = 1;
+	string password = 2;
+}
+
+// 返回数据
+message Output {
+	int64 userId = 1;
+	string userName = 2;
+	string password = 3;
+	int64 telephone = 4;
+	string address = 5;
+	FamilyGroup family = 6;
+}
+
+
+message FamilyGroup {
+	string father = 1;
+	string mother = 2;
 }

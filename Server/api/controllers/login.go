@@ -2,10 +2,10 @@ package controllers
 
 import (
 	"github.com/astaxie/beego"
-	"mostar.com/api/models"
 	"github.com/golang/protobuf/proto"
 	"fmt"
 	"encoding/base64"
+	"mostar.com/api/models"
 )
 
 type LoginController struct {
@@ -15,28 +15,60 @@ type LoginController struct {
 func (c *LoginController) Get() {
 	name := c.GetString("name")
 	// 编码
-	userModel := &user.User{}
-	userModel.UserId = proto.Int64(1)
-	userModel.UserName = proto.String(name)
-	userModel.Password = proto.String("P@ssw0rd")
-	userModel.Telephone = proto.Int64(13800138000)
-	userModel.Address = proto.String("广州市海珠区")
-	data, _ := proto.Marshal(userModel)
-
+	data := getData(name)
 	fmt.Println(data)
 
 	// 解码
-	newUserModel := &user.User{}
+	newUserModel := &user.Output{}
 	proto.Unmarshal(data, newUserModel)
 	fmt.Println(newUserModel.String())
 
 	base64String := base64.StdEncoding.EncodeToString(data)
-
 	fmt.Println(base64String)
+	
 	// 输出
 	c.Ctx.WriteString(base64String)
+	//c.Ctx.Output.Body(data)
 }
 
-type JSON struct {
-	Output string
+func (c *LoginController) Post()  {
+	// 接收参数
+	data := c.Ctx.Input.RequestBody
+	// 将接收的base64转为二进制
+	data, error := base64.StdEncoding.DecodeString(string(data))
+
+	if error == nil {
+		// 解码
+		userModel := &user.Input{}
+		proto.Unmarshal(data, userModel)
+
+		// 获取数据
+		name := userModel.GetAccount()
+		outData := getData(name)
+
+		base64String := base64.StdEncoding.EncodeToString(outData)
+
+		// 输出
+		c.Ctx.WriteString(base64String)
+	} else {
+		fmt.Println(error.Error())
+	}
 }
+
+func getData(name string) ([]byte) {
+	family := &user.FamilyGroup{
+		Father:"哈哈哈",
+		Mother:"呵呵呵",
+	}
+	userModel := &user.Output{
+		UserId:1,
+		UserName:name,
+		Password:"202cb962ac59075b964b07152d234b70",
+		Telephone:13800138000,
+		Address:"广州市海珠区",
+		Family:family,
+	}
+	data, _ := proto.Marshal(userModel)
+	return data
+}
+

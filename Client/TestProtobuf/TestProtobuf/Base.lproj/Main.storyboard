@@ -18,18 +18,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEs-Se-SzI">
-                                <rect key="frame" x="169.5" y="318.5" width="36" height="30"/>
-                                <state key="normal" title="Send"/>
+                            <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MEs-Se-SzI">
+                                <rect key="frame" x="0.0" y="20" width="375" height="323.5"/>
+                                <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Send Post">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <action selector="buttonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eCf-8p-2pg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dcm-q0-CfY">
+                                <rect key="frame" x="0.0" y="343.5" width="375" height="323.5"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Send Get"/>
+                                <connections>
+                                    <action selector="buttonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ERv-dW-Pwf"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="MEs-Se-SzI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ar6-kB-Eow"/>
-                            <constraint firstItem="MEs-Se-SzI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="t31-D5-3R1"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dcm-q0-CfY" secondAttribute="trailing" id="019-wv-vfh"/>
+                            <constraint firstItem="MEs-Se-SzI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="HZM-kE-lpE"/>
+                            <constraint firstItem="MEs-Se-SzI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Lna-2C-Npo"/>
+                            <constraint firstItem="MEs-Se-SzI" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.5" id="fPP-en-03d"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dcm-q0-CfY" secondAttribute="bottom" id="hu4-q7-kET"/>
+                            <constraint firstItem="dcm-q0-CfY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="iWZ-aU-Sx1"/>
+                            <constraint firstItem="dcm-q0-CfY" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.5" id="qLj-3L-7cq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="MEs-Se-SzI" secondAttribute="trailing" id="thU-U8-yJM"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

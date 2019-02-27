@@ -37,29 +37,85 @@ static GPBFileDescriptor *UserRoot_FileDescriptor(void) {
   if (!descriptor) {
     GPB_DEBUG_CHECK_RUNTIME_VERSIONS();
     descriptor = [[GPBFileDescriptor alloc] initWithPackage:@"user"
-                                                     syntax:GPBFileSyntaxProto2];
+                                                     syntax:GPBFileSyntaxProto3];
   }
   return descriptor;
 }
 
-#pragma mark - User
+#pragma mark - Input
 
-@implementation User
+@implementation Input
 
-@dynamic hasUserId, userId;
-@dynamic hasUserName, userName;
-@dynamic hasPassword, password;
-@dynamic hasTelephone, telephone;
-@dynamic hasAddress, address;
+@dynamic account;
+@dynamic password;
 
-typedef struct User__storage_ {
+typedef struct Input__storage_ {
+  uint32_t _has_storage_[1];
+  NSString *account;
+  NSString *password;
+} Input__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "account",
+        .dataTypeSpecific.className = NULL,
+        .number = Input_FieldNumber_Account,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(Input__storage_, account),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "password",
+        .dataTypeSpecific.className = NULL,
+        .number = Input_FieldNumber_Password,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(Input__storage_, password),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[Input class]
+                                     rootClass:[UserRoot class]
+                                          file:UserRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(Input__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - Output
+
+@implementation Output
+
+@dynamic userId;
+@dynamic userName;
+@dynamic password;
+@dynamic telephone;
+@dynamic address;
+@dynamic hasFamily, family;
+
+typedef struct Output__storage_ {
   uint32_t _has_storage_[1];
   NSString *userName;
   NSString *password;
   NSString *address;
+  FamilyGroup *family;
   int64_t userId;
   int64_t telephone;
-} User__storage_;
+} Output__storage_;
 
 // This method is threadsafe because it is initially called
 // in +initialize for each subclass.
@@ -70,62 +126,125 @@ typedef struct User__storage_ {
       {
         .name = "userId",
         .dataTypeSpecific.className = NULL,
-        .number = User_FieldNumber_UserId,
+        .number = Output_FieldNumber_UserId,
         .hasIndex = 0,
-        .offset = (uint32_t)offsetof(User__storage_, userId),
-        .flags = (GPBFieldFlags)(GPBFieldRequired | GPBFieldTextFormatNameCustom),
+        .offset = (uint32_t)offsetof(Output__storage_, userId),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
         .dataType = GPBDataTypeInt64,
       },
       {
         .name = "userName",
         .dataTypeSpecific.className = NULL,
-        .number = User_FieldNumber_UserName,
+        .number = Output_FieldNumber_UserName,
         .hasIndex = 1,
-        .offset = (uint32_t)offsetof(User__storage_, userName),
-        .flags = (GPBFieldFlags)(GPBFieldRequired | GPBFieldTextFormatNameCustom),
+        .offset = (uint32_t)offsetof(Output__storage_, userName),
+        .flags = (GPBFieldFlags)(GPBFieldOptional | GPBFieldTextFormatNameCustom),
         .dataType = GPBDataTypeString,
       },
       {
         .name = "password",
         .dataTypeSpecific.className = NULL,
-        .number = User_FieldNumber_Password,
+        .number = Output_FieldNumber_Password,
         .hasIndex = 2,
-        .offset = (uint32_t)offsetof(User__storage_, password),
+        .offset = (uint32_t)offsetof(Output__storage_, password),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
       },
       {
         .name = "telephone",
         .dataTypeSpecific.className = NULL,
-        .number = User_FieldNumber_Telephone,
+        .number = Output_FieldNumber_Telephone,
         .hasIndex = 3,
-        .offset = (uint32_t)offsetof(User__storage_, telephone),
+        .offset = (uint32_t)offsetof(Output__storage_, telephone),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeInt64,
       },
       {
         .name = "address",
         .dataTypeSpecific.className = NULL,
-        .number = User_FieldNumber_Address,
+        .number = Output_FieldNumber_Address,
         .hasIndex = 4,
-        .offset = (uint32_t)offsetof(User__storage_, address),
+        .offset = (uint32_t)offsetof(Output__storage_, address),
         .flags = GPBFieldOptional,
         .dataType = GPBDataTypeString,
       },
+      {
+        .name = "family",
+        .dataTypeSpecific.className = GPBStringifySymbol(FamilyGroup),
+        .number = Output_FieldNumber_Family,
+        .hasIndex = 5,
+        .offset = (uint32_t)offsetof(Output__storage_, family),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeMessage,
+      },
     };
     GPBDescriptor *localDescriptor =
-        [GPBDescriptor allocDescriptorForClass:[User class]
+        [GPBDescriptor allocDescriptorForClass:[Output class]
                                      rootClass:[UserRoot class]
                                           file:UserRoot_FileDescriptor()
                                         fields:fields
                                     fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
-                                   storageSize:sizeof(User__storage_)
+                                   storageSize:sizeof(Output__storage_)
                                          flags:GPBDescriptorInitializationFlag_None];
 #if !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
     static const char *extraTextFormatInfo =
         "\002\001\006\000\002\010\000";
     [localDescriptor setupExtraTextInfo:extraTextFormatInfo];
 #endif  // !GPBOBJC_SKIP_MESSAGE_TEXTFORMAT_EXTRAS
+    NSAssert(descriptor == nil, @"Startup recursed!");
+    descriptor = localDescriptor;
+  }
+  return descriptor;
+}
+
+@end
+
+#pragma mark - FamilyGroup
+
+@implementation FamilyGroup
+
+@dynamic father;
+@dynamic mother;
+
+typedef struct FamilyGroup__storage_ {
+  uint32_t _has_storage_[1];
+  NSString *father;
+  NSString *mother;
+} FamilyGroup__storage_;
+
+// This method is threadsafe because it is initially called
+// in +initialize for each subclass.
++ (GPBDescriptor *)descriptor {
+  static GPBDescriptor *descriptor = nil;
+  if (!descriptor) {
+    static GPBMessageFieldDescription fields[] = {
+      {
+        .name = "father",
+        .dataTypeSpecific.className = NULL,
+        .number = FamilyGroup_FieldNumber_Father,
+        .hasIndex = 0,
+        .offset = (uint32_t)offsetof(FamilyGroup__storage_, father),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+      {
+        .name = "mother",
+        .dataTypeSpecific.className = NULL,
+        .number = FamilyGroup_FieldNumber_Mother,
+        .hasIndex = 1,
+        .offset = (uint32_t)offsetof(FamilyGroup__storage_, mother),
+        .flags = GPBFieldOptional,
+        .dataType = GPBDataTypeString,
+      },
+    };
+    GPBDescriptor *localDescriptor =
+        [GPBDescriptor allocDescriptorForClass:[FamilyGroup class]
+                                     rootClass:[UserRoot class]
+                                          file:UserRoot_FileDescriptor()
+                                        fields:fields
+                                    fieldCount:(uint32_t)(sizeof(fields) / sizeof(GPBMessageFieldDescription))
+                                   storageSize:sizeof(FamilyGroup__storage_)
+                                         flags:GPBDescriptorInitializationFlag_None];
     NSAssert(descriptor == nil, @"Startup recursed!");
     descriptor = localDescriptor;
   }

@@ -27,6 +27,8 @@
 
 CF_EXTERN_C_BEGIN
 
+@class FamilyGroup;
+
 NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - UserRoot
@@ -44,35 +46,68 @@ NS_ASSUME_NONNULL_BEGIN
 @interface UserRoot : GPBRootObject
 @end
 
-#pragma mark - User
+#pragma mark - Input
 
-typedef GPB_ENUM(User_FieldNumber) {
-  User_FieldNumber_UserId = 1,
-  User_FieldNumber_UserName = 2,
-  User_FieldNumber_Password = 3,
-  User_FieldNumber_Telephone = 4,
-  User_FieldNumber_Address = 5,
+typedef GPB_ENUM(Input_FieldNumber) {
+  Input_FieldNumber_Account = 1,
+  Input_FieldNumber_Password = 2,
 };
 
-@interface User : GPBMessage
+/**
+ * 接收参数
+ **/
+@interface Input : GPBMessage
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *account;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *password;
+
+@end
+
+#pragma mark - Output
+
+typedef GPB_ENUM(Output_FieldNumber) {
+  Output_FieldNumber_UserId = 1,
+  Output_FieldNumber_UserName = 2,
+  Output_FieldNumber_Password = 3,
+  Output_FieldNumber_Telephone = 4,
+  Output_FieldNumber_Address = 5,
+  Output_FieldNumber_Family = 6,
+};
+
+/**
+ * 返回数据
+ **/
+@interface Output : GPBMessage
 
 @property(nonatomic, readwrite) int64_t userId;
 
-@property(nonatomic, readwrite) BOOL hasUserId;
 @property(nonatomic, readwrite, copy, null_resettable) NSString *userName;
-/** Test to see if @c userName has been set. */
-@property(nonatomic, readwrite) BOOL hasUserName;
 
 @property(nonatomic, readwrite, copy, null_resettable) NSString *password;
-/** Test to see if @c password has been set. */
-@property(nonatomic, readwrite) BOOL hasPassword;
 
 @property(nonatomic, readwrite) int64_t telephone;
 
-@property(nonatomic, readwrite) BOOL hasTelephone;
 @property(nonatomic, readwrite, copy, null_resettable) NSString *address;
-/** Test to see if @c address has been set. */
-@property(nonatomic, readwrite) BOOL hasAddress;
+
+@property(nonatomic, readwrite, strong, null_resettable) FamilyGroup *family;
+/** Test to see if @c family has been set. */
+@property(nonatomic, readwrite) BOOL hasFamily;
+
+@end
+
+#pragma mark - FamilyGroup
+
+typedef GPB_ENUM(FamilyGroup_FieldNumber) {
+  FamilyGroup_FieldNumber_Father = 1,
+  FamilyGroup_FieldNumber_Mother = 2,
+};
+
+@interface FamilyGroup : GPBMessage
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *father;
+
+@property(nonatomic, readwrite, copy, null_resettable) NSString *mother;
 
 @end
 
